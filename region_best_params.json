@@ -1,0 +1,542 @@
+{
+    "WestTexNewMexico": {
+        "reg_lambda": "1.426790657919566",
+        "learning_rate": "0.045260894901156014",
+        "max_depth": "5",
+        "colsample_bytree": "0.7325896778487762",
+        "reg_alpha": "1.234090879709051",
+        "subsample": "0.9422453394888006",
+        "gamma": "0.23211648284288144",
+        "n_estimators": "72"
+    },
+    "West": {
+        "reg_lambda": "2.1517740033331076",
+        "learning_rate": "0.06991232659187735",
+        "max_depth": "3",
+        "colsample_bytree": "0.8599834958475671",
+        "reg_alpha": "0.10572226766772108",
+        "subsample": "0.6471155054720806",
+        "gamma": "0.028811128326097273",
+        "n_estimators": "54"
+    },
+    "TotalUS": {
+        "reg_lambda": "2.8001723605186792",
+        "learning_rate": "0.06291705152734252",
+        "max_depth": "5",
+        "colsample_bytree": "0.7619382193271867",
+        "reg_alpha": "1.0247588520382815",
+        "subsample": "0.7196543168208461",
+        "gamma": "0.018729511682612526",
+        "n_estimators": "189"
+    },
+    "Tampa": {
+        "reg_lambda": "1.033322062033789",
+        "learning_rate": "0.16338315185540336",
+        "max_depth": "3",
+        "colsample_bytree": "0.7842289458789595",
+        "reg_alpha": "0.46005978046998475",
+        "subsample": "0.7925135205529868",
+        "gamma": "0.08966599412431818",
+        "n_estimators": "70"
+    },
+    "Syracuse": {
+        "reg_lambda": "2.625267685510458",
+        "learning_rate": "0.02548325590820362",
+        "max_depth": "5",
+        "colsample_bytree": "0.7472474001117128",
+        "reg_alpha": "0.6749378701743006",
+        "subsample": "0.8448523348601913",
+        "gamma": "0.0081331729551751",
+        "n_estimators": "200"
+    },
+    "StLouis": {
+        "reg_lambda": "3.378523678767335",
+        "learning_rate": "0.19631614972101244",
+        "max_depth": "4",
+        "colsample_bytree": "0.8662677852396934",
+        "reg_alpha": "2.114464126324273",
+        "subsample": "0.9981766100295945",
+        "gamma": "0.02600158170628708",
+        "n_estimators": "147"
+    },
+    "Spokane": {
+        "reg_lambda": "1.4463465042635328",
+        "learning_rate": "0.19897804596295482",
+        "max_depth": "5",
+        "colsample_bytree": "0.5216866055217622",
+        "reg_alpha": "0.6263531480578679",
+        "subsample": "0.9850521026306743",
+        "gamma": "0.00413032620133269",
+        "n_estimators": "108"
+    },
+    "Southeast": {
+        "reg_lambda": "0.08738356378186916",
+        "learning_rate": "0.19817547446781794",
+        "max_depth": "6",
+        "colsample_bytree": "0.7405313209347134",
+        "reg_alpha": "0.5401745584989008",
+        "subsample": "0.7152868123136815",
+        "gamma": "0.027679435648218842",
+        "n_estimators": "74"
+    },
+    "SouthCentral": {
+        "reg_lambda": "1.181537965417372",
+        "learning_rate": "0.14249875785362837",
+        "max_depth": "6",
+        "colsample_bytree": "0.9260709454957832",
+        "reg_alpha": "0.7085039231787382",
+        "subsample": "0.7846400630565672",
+        "gamma": "0.01980232058242041",
+        "n_estimators": "163"
+    },
+    "SouthCarolina": {
+        "reg_lambda": "1.4003197322702496",
+        "learning_rate": "0.12463381483052483",
+        "max_depth": "5",
+        "colsample_bytree": "0.6814344660149457",
+        "reg_alpha": "1.148830411489579",
+        "subsample": "0.9577995746267821",
+        "gamma": "0.008665177804160137",
+        "n_estimators": "89"
+    },
+    "Seattle": {
+        "reg_lambda": "4.635937344071513",
+        "learning_rate": "0.19590475374300523",
+        "max_depth": "7",
+        "colsample_bytree": "0.7975477082925508",
+        "reg_alpha": "0.012456975614071886",
+        "subsample": "0.5225165776630952",
+        "gamma": "0.0224071099321832",
+        "n_estimators": "111"
+    },
+    "SanFrancisco": {
+        "reg_lambda": "4.111788487698211",
+        "learning_rate": "0.13134793631781022",
+        "max_depth": "5",
+        "colsample_bytree": "0.8826415522924204",
+        "reg_alpha": "0.966266019462739",
+        "subsample": "0.7581412871268534",
+        "gamma": "0.10912115895066807",
+        "n_estimators": "95"
+    },
+    "SanDiego": {
+        "reg_lambda": "3.95052502158472",
+        "learning_rate": "0.08612785940361385",
+        "max_depth": "4",
+        "colsample_bytree": "0.5372792441726617",
+        "reg_alpha": "0.6934631453842081",
+        "subsample": "0.7579547762679414",
+        "gamma": "0.015112045348892883",
+        "n_estimators": "130"
+    },
+    "Sacramento": {
+        "reg_lambda": "1.3794207030754755",
+        "learning_rate": "0.12752510294189046",
+        "max_depth": "4",
+        "colsample_bytree": "0.6502269883199886",
+        "reg_alpha": "0.03170377380171674",
+        "subsample": "0.827143956505326",
+        "gamma": "0.05152743138775304",
+        "n_estimators": "87"
+    },
+    "Roanoke": {
+        "reg_lambda": "0.4024840334712122",
+        "learning_rate": "0.08744674750568786",
+        "max_depth": "7",
+        "colsample_bytree": "0.6664074951354689",
+        "reg_alpha": "0.08250473397211765",
+        "subsample": "0.8389505199914833",
+        "gamma": "0.06799389276493795",
+        "n_estimators": "73"
+    },
+    "RichmondNorfolk": {
+        "reg_lambda": "1.643966666255848",
+        "learning_rate": "0.06025994779040622",
+        "max_depth": "4",
+        "colsample_bytree": "0.8000215780809568",
+        "reg_alpha": "0.7498314414375269",
+        "subsample": "0.8478430421274706",
+        "gamma": "0.04310860483617255",
+        "n_estimators": "76"
+    },
+    "RaleighGreensboro": {
+        "reg_lambda": "3.9755560695457826",
+        "learning_rate": "0.1593098820611347",
+        "max_depth": "3",
+        "colsample_bytree": "0.855998503413746",
+        "reg_alpha": "0.38843396615797265",
+        "subsample": "0.7159462734780435",
+        "gamma": "0.0012663204251702198",
+        "n_estimators": "174"
+    },
+    "Portland": {
+        "reg_lambda": "1.6732472156750084",
+        "learning_rate": "0.1419358600968107",
+        "max_depth": "6",
+        "colsample_bytree": "0.6920927500100926",
+        "reg_alpha": "2.0261721118009053",
+        "subsample": "0.76542829993906",
+        "gamma": "0.007877892657792977",
+        "n_estimators": "164"
+    },
+    "Plains": {
+        "reg_lambda": "0.0033798394691541642",
+        "learning_rate": "0.08196656871793262",
+        "max_depth": "6",
+        "colsample_bytree": "0.580102036001777",
+        "reg_alpha": "0.5257325901111454",
+        "subsample": "0.7246780874508209",
+        "gamma": "0.03920731181818482",
+        "n_estimators": "73"
+    },
+    "Pittsburgh": {
+        "reg_lambda": "4.981575402324737",
+        "learning_rate": "0.10023649764662734",
+        "max_depth": "6",
+        "colsample_bytree": "0.8246543920011066",
+        "reg_alpha": "0.008799299829260754",
+        "subsample": "0.9761449534059212",
+        "gamma": "0.1634216095947493",
+        "n_estimators": "50"
+    },
+    "PhoenixTucson": {
+        "reg_lambda": "2.0458969759285655",
+        "learning_rate": "0.04944592551998526",
+        "max_depth": "3",
+        "colsample_bytree": "0.8666022592120011",
+        "reg_alpha": "0.02107371150074777",
+        "subsample": "0.9729927798218916",
+        "gamma": "0.3647311144328077",
+        "n_estimators": "186"
+    },
+    "Philadelphia": {
+        "reg_lambda": "3.0913705871634227",
+        "learning_rate": "0.07840352669189411",
+        "max_depth": "7",
+        "colsample_bytree": "0.5542023246974075",
+        "reg_alpha": "0.437993197126689",
+        "subsample": "0.9629583321817556",
+        "gamma": "0.06423394530714138",
+        "n_estimators": "59"
+    },
+    "Orlando": {
+        "reg_lambda": "4.988078344350931",
+        "learning_rate": "0.10028956983176456",
+        "max_depth": "5",
+        "colsample_bytree": "0.9100116883856257",
+        "reg_alpha": "1.166640820605922",
+        "subsample": "0.8348410322974966",
+        "gamma": "0.00470463327657351",
+        "n_estimators": "133"
+    },
+    "NorthernNewEngland": {
+        "reg_lambda": "0.3572983673370583",
+        "learning_rate": "0.10357013565540851",
+        "max_depth": "5",
+        "colsample_bytree": "0.7789011776190914",
+        "reg_alpha": "0.0013826963083948263",
+        "subsample": "0.6456188076774033",
+        "gamma": "0.030873592149088067",
+        "n_estimators": "127"
+    },
+    "Northeast": {
+        "reg_lambda": "3.826410603461765",
+        "learning_rate": "0.07380765083460836",
+        "max_depth": "7",
+        "colsample_bytree": "0.9077133198382727",
+        "reg_alpha": "1.6368652158798802",
+        "subsample": "0.9229049165572942",
+        "gamma": "0.02212045316428879",
+        "n_estimators": "132"
+    },
+    "NewYork": {
+        "reg_lambda": "2.370270620376418",
+        "learning_rate": "0.19810537439027204",
+        "max_depth": "6",
+        "colsample_bytree": "0.8076919059760842",
+        "reg_alpha": "0.400455685417639",
+        "subsample": "0.832818290117638",
+        "gamma": "0.10300436535720048",
+        "n_estimators": "157"
+    },
+    "NewOrleansMobile": {
+        "reg_lambda": "1.95953094588262",
+        "learning_rate": "0.10569711578223794",
+        "max_depth": "4",
+        "colsample_bytree": "0.9865966341190516",
+        "reg_alpha": "0.7467631559341947",
+        "subsample": "0.7807334901896961",
+        "gamma": "0.020252860193004013",
+        "n_estimators": "132"
+    },
+    "Nashville": {
+        "reg_lambda": "4.331552254098488",
+        "learning_rate": "0.1332115307684708",
+        "max_depth": "6",
+        "colsample_bytree": "0.6844071345347522",
+        "reg_alpha": "1.4735643622522292",
+        "subsample": "0.7867922860666074",
+        "gamma": "0.0025104229973039738",
+        "n_estimators": "181"
+    },
+    "Midsouth": {
+        "reg_lambda": "4.422895512410015",
+        "learning_rate": "0.16905085979690118",
+        "max_depth": "3",
+        "colsample_bytree": "0.8042044267227662",
+        "reg_alpha": "0.3718096297357407",
+        "subsample": "0.7505760438327588",
+        "gamma": "0.031753272339449856",
+        "n_estimators": "192"
+    },
+    "MiamiFtLauderdale": {
+        "reg_lambda": "2.177284386588971",
+        "learning_rate": "0.047462899655013685",
+        "max_depth": "7",
+        "colsample_bytree": "0.5345989089330109",
+        "reg_alpha": "0.4727030619821193",
+        "subsample": "0.7583325091027138",
+        "gamma": "0.0702993527412723",
+        "n_estimators": "176"
+    },
+    "Louisville": {
+        "reg_lambda": "1.9782117317848167",
+        "learning_rate": "0.1495078168476748",
+        "max_depth": "4",
+        "colsample_bytree": "0.618762125285303",
+        "reg_alpha": "0.5203105895217788",
+        "subsample": "0.603072106983611",
+        "gamma": "0.1703001720242514",
+        "n_estimators": "179"
+    },
+    "LosAngeles": {
+        "reg_lambda": "1.3260759516048188",
+        "learning_rate": "0.1970928651485177",
+        "max_depth": "5",
+        "colsample_bytree": "0.9921753365572237",
+        "reg_alpha": "0.06238065816184268",
+        "subsample": "0.9864773795786544",
+        "gamma": "0.020092780421211473",
+        "n_estimators": "197"
+    },
+    "LasVegas": {
+        "reg_lambda": "4.214347677080982",
+        "learning_rate": "0.15453935329594318",
+        "max_depth": "3",
+        "colsample_bytree": "0.6476835153377226",
+        "reg_alpha": "0.5597509151406139",
+        "subsample": "0.6140135472494186",
+        "gamma": "0.2076407205599548",
+        "n_estimators": "186"
+    },
+    "Jacksonville": {
+        "reg_lambda": "4.20148949299792",
+        "learning_rate": "0.0760007007987086",
+        "max_depth": "5",
+        "colsample_bytree": "0.8236659875986677",
+        "reg_alpha": "1.1492804967561598",
+        "subsample": "0.8399628444293991",
+        "gamma": "0.001634820945311255",
+        "n_estimators": "115"
+    },
+    "Indianapolis": {
+        "reg_lambda": "0.8560310926879658",
+        "learning_rate": "0.04962760843722474",
+        "max_depth": "7",
+        "colsample_bytree": "0.9989779597586295",
+        "reg_alpha": "0.011371738243319829",
+        "subsample": "0.848009525899379",
+        "gamma": "0.0674521122375914",
+        "n_estimators": "172"
+    },
+    "Houston": {
+        "reg_lambda": "4.873992807355773",
+        "learning_rate": "0.1568245602067052",
+        "max_depth": "5",
+        "colsample_bytree": "0.9704900840434744",
+        "reg_alpha": "0.06125732694376773",
+        "subsample": "0.9830014331576639",
+        "gamma": "0.021252621120941534",
+        "n_estimators": "93"
+    },
+    "HartfordSpringfield": {
+        "reg_lambda": "0.8274010560636607",
+        "learning_rate": "0.04713038484720512",
+        "max_depth": "5",
+        "colsample_bytree": "0.7564448833904174",
+        "reg_alpha": "0.7177934823075796",
+        "subsample": "0.9206216155987297",
+        "gamma": "0.018346723456348912",
+        "n_estimators": "180"
+    },
+    "HarrisburgScranton": {
+        "reg_lambda": "2.0844312888719436",
+        "learning_rate": "0.05283518327812652",
+        "max_depth": "6",
+        "colsample_bytree": "0.692047879439161",
+        "reg_alpha": "0.7484892865393034",
+        "subsample": "0.7063992687329326",
+        "gamma": "0.008984230369006266",
+        "n_estimators": "113"
+    },
+    "GreatLakes": {
+        "reg_lambda": "4.8609341699751765",
+        "learning_rate": "0.08850313366077045",
+        "max_depth": "5",
+        "colsample_bytree": "0.9076358686107877",
+        "reg_alpha": "0.39917755492800777",
+        "subsample": "0.8744665519451864",
+        "gamma": "0.04076758862212415",
+        "n_estimators": "174"
+    },
+    "GrandRapids": {
+        "reg_lambda": "2.223461799877204",
+        "learning_rate": "0.040398303311305145",
+        "max_depth": "7",
+        "colsample_bytree": "0.8730887962522746",
+        "reg_alpha": "0.09082133499480438",
+        "subsample": "0.9962578787628253",
+        "gamma": "0.10663778391351508",
+        "n_estimators": "89"
+    },
+    "Detroit": {
+        "reg_lambda": "0.7235610799896117",
+        "learning_rate": "0.14819600054502158",
+        "max_depth": "5",
+        "colsample_bytree": "0.8141282122080772",
+        "reg_alpha": "0.18411286039157093",
+        "subsample": "0.8054056631073947",
+        "gamma": "0.16057400906903813",
+        "n_estimators": "197"
+    },
+    "Denver": {
+        "reg_lambda": "2.1029693448777538",
+        "learning_rate": "0.167817298252893",
+        "max_depth": "4",
+        "colsample_bytree": "0.9381213391923018",
+        "reg_alpha": "1.6290701821577032",
+        "subsample": "0.6369193569092573",
+        "gamma": "0.014961295654412232",
+        "n_estimators": "125"
+    },
+    "DallasFtWorth": {
+        "reg_lambda": "2.4269766588571153",
+        "learning_rate": "0.11218995045913503",
+        "max_depth": "5",
+        "colsample_bytree": "0.9376475631733632",
+        "reg_alpha": "0.8731786924566695",
+        "subsample": "0.7672744876802255",
+        "gamma": "0.034448026891925526",
+        "n_estimators": "87"
+    },
+    "Columbus": {
+        "reg_lambda": "2.331841591934298",
+        "learning_rate": "0.10552713560929014",
+        "max_depth": "3",
+        "colsample_bytree": "0.7161581450988718",
+        "reg_alpha": "0.027853124740859325",
+        "subsample": "0.5529172764313094",
+        "gamma": "0.5988778090950345",
+        "n_estimators": "157"
+    },
+    "CincinnatiDayton": {
+        "reg_lambda": "3.3546251139998953",
+        "learning_rate": "0.12259380014616467",
+        "max_depth": "7",
+        "colsample_bytree": "0.8004086038784077",
+        "reg_alpha": "0.12936996519842392",
+        "subsample": "0.9861883710916683",
+        "gamma": "0.024463951378144787",
+        "n_estimators": "144"
+    },
+    "Chicago": {
+        "reg_lambda": "0.1956748052837927",
+        "learning_rate": "0.09082225991267885",
+        "max_depth": "6",
+        "colsample_bytree": "0.6372544059807383",
+        "reg_alpha": "1.6717097580003328",
+        "subsample": "0.7239699813781137",
+        "gamma": "0.02303511648537454",
+        "n_estimators": "138"
+    },
+    "Charlotte": {
+        "reg_lambda": "0.7475227046713269",
+        "learning_rate": "0.15750615354689504",
+        "max_depth": "3",
+        "colsample_bytree": "0.7744265902050523",
+        "reg_alpha": "0.1572189295856951",
+        "subsample": "0.5125843611119825",
+        "gamma": "0.010379021960265022",
+        "n_estimators": "106"
+    },
+    "California": {
+        "reg_lambda": "3.290320365793378",
+        "learning_rate": "0.11883908578309203",
+        "max_depth": "6",
+        "colsample_bytree": "0.7626266906289269",
+        "reg_alpha": "0.012849341606273573",
+        "subsample": "0.7983417505483152",
+        "gamma": "0.2199497100481181",
+        "n_estimators": "169"
+    },
+    "BuffaloRochester": {
+        "reg_lambda": "3.6050421689150065",
+        "learning_rate": "0.1666937610039988",
+        "max_depth": "5",
+        "colsample_bytree": "0.8959715998929687",
+        "reg_alpha": "0.5408013341324882",
+        "subsample": "0.7337141296074238",
+        "gamma": "0.0018248127357825758",
+        "n_estimators": "150"
+    },
+    "Boston": {
+        "reg_lambda": "2.8121127440187017",
+        "learning_rate": "0.19988490766197575",
+        "max_depth": "7",
+        "colsample_bytree": "0.8143645462028606",
+        "reg_alpha": "0.16985749655923546",
+        "subsample": "0.5009492831583264",
+        "gamma": "0.1744731666743402",
+        "n_estimators": "169"
+    },
+    "Boise": {
+        "reg_lambda": "0.08803499379056648",
+        "learning_rate": "0.1982155836458558",
+        "max_depth": "4",
+        "colsample_bytree": "0.5954568893870054",
+        "reg_alpha": "0.7610774255422756",
+        "subsample": "0.692315097545327",
+        "gamma": "0.08058727844267119",
+        "n_estimators": "53"
+    },
+    "BaltimoreWashington": {
+        "reg_lambda": "4.385874115664746",
+        "learning_rate": "0.19816750557014937",
+        "max_depth": "5",
+        "colsample_bytree": "0.6721776221933408",
+        "reg_alpha": "0.4611186066283647",
+        "subsample": "0.7172647335480884",
+        "gamma": "0.03053070822312437",
+        "n_estimators": "168"
+    },
+    "Atlanta": {
+        "reg_lambda": "0.8098170436889129",
+        "learning_rate": "0.17980438666067008",
+        "max_depth": "6",
+        "colsample_bytree": "0.6473589611402788",
+        "reg_alpha": "2.370664134080072",
+        "subsample": "0.7156565913041157",
+        "gamma": "0.02382689594362941",
+        "n_estimators": "117"
+    },
+    "Albany": {
+        "reg_lambda": "3.2769482763611455",
+        "learning_rate": "0.19725705129023485",
+        "max_depth": "5",
+        "colsample_bytree": "0.9045782397486642",
+        "reg_alpha": "0.021865407163690495",
+        "subsample": "0.5063351032812853",
+        "gamma": "0.10732336831555063",
+        "n_estimators": "151"
+    }
+}
