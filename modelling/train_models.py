@@ -12,11 +12,9 @@ from sklearn.model_selection import train_test_split
 import json
 import warnings
 from dotenv import load_dotenv
-import modelling.data_processing as data_processing
+import data_processing
 import feature_eng
 import configs
-
-load_dotenv()
 
 def convert_numbers(obj):
         for key, value in obj.items():
@@ -31,7 +29,7 @@ def convert_numbers(obj):
 
 def load_best_params(region, from_json=True):
     if from_json:
-        with open('region_best_params.json') as file:
+        with open('modelling/region_best_params.json') as file:
             best_params = json.load(file, object_hook=convert_numbers)
         if region in best_params:
             return best_params[region]
@@ -98,6 +96,8 @@ def main(experiment_name = os.getenv("EXPERIMENT_NAME")):
     print('loaded configs')
     merge_df = data_processing.make_stage_1_data(configs)
     print('Loaded data')
+    print(os.getenv("MLFLOW_TRACKING_URI"))
+    print(os.getenv("AAA"))
     mlflow.set_experiment(experiment_name)
     print('Set experiment name')
     for region in configs['target_regions']:
@@ -141,6 +141,7 @@ def main(experiment_name = os.getenv("EXPERIMENT_NAME")):
             mlflow.register_model(model_uri, name=f'{region}_AVOCADO_FORECAST', tags=tags)
 
 if __name__ =='__main__':
+    load_dotenv()
     start = time.time()
     print('START!')
     main()
