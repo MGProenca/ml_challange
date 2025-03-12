@@ -4,18 +4,18 @@ import os
 import kagglehub
 
 def load_raw_data():
-    # Download latest version
-    path = kagglehub.dataset_download("neuromusic/avocado-prices")
+    # # Download latest version
+    # path = kagglehub.dataset_download("neuromusic/avocado-prices")
 
-    destination_folder = "./data"
-    # Create the destination folder if it doesn't exist
-    os.makedirs(destination_folder, exist_ok=True)
+    # destination_folder = "./data"
+    # # Create the destination folder if it doesn't exist
+    # os.makedirs(destination_folder, exist_ok=True)
 
-    # Move all files from source to destination
-    for filename in os.listdir(path):
-        source_file = os.path.join(path, filename)
-        destination_file = os.path.join(destination_folder, filename)
-        shutil.move(source_file, destination_file)
+    # # Move all files from source to destination
+    # for filename in os.listdir(path):
+    #     source_file = os.path.join(path, filename)
+    #     destination_file = os.path.join(destination_folder, filename)
+    #     shutil.move(source_file, destination_file)
 
     df = pd.read_csv('data/avocado.csv')
     return df
