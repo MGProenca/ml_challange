@@ -1,27 +1,21 @@
-import pandas as pd
 import matplotlib.pyplot as plt
-import numpy as np
-import shutil
 import os
-import seaborn as sns
-import kagglehub
 import xgboost as xgb
 import mlflow
 import mlflow
 import mlflow.xgboost
 import xgboost as xgb
-from sklearn.model_selection import TimeSeriesSplit
 from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error
-import numpy as np
-import pandas as pd
 from sklearn.model_selection import train_test_split
-
-import data_processing
-import feature_eng
-
+import time
 from sklearn.model_selection import train_test_split
 import json
 import warnings
+from dotenv import load_dotenv
+import data_processing
+import feature_eng
+
+load_dotenv()
 
 def convert_numbers(obj):
         for key, value in obj.items():
@@ -48,36 +42,38 @@ def load_best_params(region, from_json=True):
     return
 
 def load_configs():
-    configs = {
-        "target_name": "AveragePrice",
-        "lags":[4, 8, 13, 26, 52],
-        # "lags":[4],
-        # 'target_regions':['Chicago','Albany'],
-        'target_regions': [
-            'Albany', 
-            # 'Atlanta', 'BaltimoreWashington', 'Boise', 'Boston',
-            # 'BuffaloRochester', 'California', 'Charlotte', 'Chicago',
-            # 'CincinnatiDayton', 'Columbus', 'DallasFtWorth', 'Denver',
-            # 'Detroit', 'GrandRapids', 'GreatLakes', 'HarrisburgScranton',
-            # 'HartfordSpringfield', 'Houston', 'Indianapolis', 'Jacksonville',
-            # 'LasVegas', 'LosAngeles', 'Louisville', 'MiamiFtLauderdale',
-            # 'Midsouth', 'Nashville', 'NewOrleansMobile', 'NewYork',
-            # 'Northeast', 'NorthernNewEngland', 'Orlando', 'Philadelphia',
-            # 'PhoenixTucson', 'Pittsburgh', 'Plains', 'Portland',
-            # 'RaleighGreensboro', 'RichmondNorfolk', 'Roanoke', 'Sacramento',
-            # 'SanDiego', 'SanFrancisco', 'Seattle', 'SouthCarolina',
-            # 'SouthCentral', 'Southeast', 'Spokane', 'StLouis', 'Syracuse',
-            # 'Tampa', 'TotalUS', 'West', 
-            'WestTexNewMexico'],
-        "aux_regions": ['TotalUS', 'West', 'Midsouth', 'Northeast', 'Southeast', 'SouthCentral'],
-        "aux_features": ['AveragePrice_combined', 'TotalVolume_combined', 
-                         '4046_combined', '4225_combined', '4770_combined', 
-                         'TotalBags_combined', 'SmallBags_combined', 
-                         'LargeBags_combined', 'XLargeBags_combined'],
-        "aux_lags": [4, 8, 13, 26, 52],
-        # "aux_lags": [4],
-        'experiment_name': 'Price Forecasting11 - Regions'
-    }
+    # configs = {
+    #     "target_name": "AveragePrice",
+    #     "lags":[4, 8, 13, 26, 52],
+    #     # "lags":[4],
+    #     # 'target_regions':['Chicago','Albany'],
+    #     'target_regions': [
+    #         'Albany', 
+    #         'Atlanta', 'BaltimoreWashington', 'Boise', 'Boston',
+    #         'BuffaloRochester', 'California', 'Charlotte', 'Chicago',
+    #         'CincinnatiDayton', 'Columbus', 'DallasFtWorth', 'Denver',
+    #         'Detroit', 'GrandRapids', 'GreatLakes', 'HarrisburgScranton',
+    #         'HartfordSpringfield', 'Houston', 'Indianapolis', 'Jacksonville',
+    #         'LasVegas', 'LosAngeles', 'Louisville', 'MiamiFtLauderdale',
+    #         'Midsouth', 'Nashville', 'NewOrleansMobile', 'NewYork',
+    #         'Northeast', 'NorthernNewEngland', 'Orlando', 'Philadelphia',
+    #         'PhoenixTucson', 'Pittsburgh', 'Plains', 'Portland',
+    #         'RaleighGreensboro', 'RichmondNorfolk', 'Roanoke', 'Sacramento',
+    #         'SanDiego', 'SanFrancisco', 'Seattle', 'SouthCarolina',
+    #         'SouthCentral', 'Southeast', 'Spokane', 'StLouis', 'Syracuse',
+    #         'Tampa', 'TotalUS', 'West', 
+    #         'WestTexNewMexico'],
+    #     "aux_regions": ['TotalUS', 'West', 'Midsouth', 'Northeast', 'Southeast', 'SouthCentral'],
+    #     "aux_features": ['AveragePrice_combined', 'TotalVolume_combined', 
+    #                      '4046_combined', '4225_combined', '4770_combined', 
+    #                      'TotalBags_combined', 'SmallBags_combined', 
+    #                      'LargeBags_combined', 'XLargeBags_combined'],
+    #     "aux_lags": [4, 8, 13, 26, 52],
+    #     # "aux_lags": [4],
+    #     'experiment_name': 'Price Forecasting11 - Regions'
+    # }
+    with open('configs.json', 'r') as f:
+        configs = json.load(f)
     return configs
 
 def plot_results(y_train, y_true, y_pred, target_name, dates, fold=None):
@@ -95,7 +91,7 @@ def plot_results(y_train, y_true, y_pred, target_name, dates, fold=None):
     plt.ylabel(target_name)
     return plt
 
-def main(experiment_name = 'All Regions'):
+def main(experiment_name = os.getenv("EXPERIMENT_NAME")):
     # mlflow.set_tracking_uri("http://localhost:5000")  # Set this if using a tracking server
 
     configs = load_configs()
@@ -142,6 +138,9 @@ def main(experiment_name = 'All Regions'):
             model_uri = mlflow.get_artifact_uri("final_model")
             mlflow.register_model(model_uri, name=f'{region}_AVOCADO_FORECAST')
 
-
 if __name__ =='__main__':
+    start = time.time()
     main()
+    end = time.time()
+    elapsed_time = start - end
+    print(f"Elapsed time for main training function: {elapsed_time:.2f} seconds")

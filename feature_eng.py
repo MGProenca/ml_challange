@@ -1,11 +1,4 @@
 import pandas as pd
-import matplotlib.pyplot as plt
-import numpy as np
-import shutil
-import os
-import seaborn as sns
-import kagglehub
-import xgboost as xgb
 
 def make_lags_single_column(sel_df, lags, lag_column, region_name=False):
     ''' Create lag features for a single region and lag column '''
@@ -31,16 +24,16 @@ def select_region(merge_df, region):
     sel_df = merge_df[merge_df['Region'] == region].reset_index(drop=True)
     return sel_df.drop(columns='Region')
 
-def make_target_region_lags_df(merge_df, target_region, train_configs):
+def make_target_region_lags_df(merge_df, target_region, configs):
     region_filt_df = select_region(merge_df, target_region)
 
-    columns_to_lag = merge_df.loc[:, merge_df.columns != train_configs['target_name']].select_dtypes(
+    columns_to_lag = merge_df.loc[:, merge_df.columns != configs['target_name']].select_dtypes(
         include=['number']).columns
 
-    target_region_lags_df = make_region_lags(region_filt_df, target_region, columns_to_lag, train_configs['lags'])
+    target_region_lags_df = make_region_lags(region_filt_df, target_region, columns_to_lag, configs['lags'])
 
     aux_regions_lags = []
-    for aux_region_name in train_configs['aux_regions']:
+    for aux_region_name in configs['aux_regions']:
         if aux_region_name == target_region:
             continue
         
@@ -49,8 +42,8 @@ def make_target_region_lags_df(merge_df, target_region, train_configs):
             make_region_lags(
                 aux_region_filt_df, 
                 aux_region_name, 
-                train_configs['aux_features'], 
-                train_configs['aux_lags'],
+                configs['aux_features'], 
+                configs['aux_lags'],
                 region_name_in_col=True))
     aux_regions_lags_df = pd.concat(aux_regions_lags, axis=1)
 
@@ -67,11 +60,11 @@ def make_time_features(sel_df):
     time_feats["Quarter"] = dates.dt.quarter
     return time_feats
 
-def make_stage_2_data(merge_df, region, train_configs):
-    lags_df = make_target_region_lags_df(merge_df, region, train_configs)
+def make_stage_2_data(merge_df, region, configs):
+    lags_df = make_target_region_lags_df(merge_df, region, configs)
     region_filt_df = select_region(merge_df, region)
     feat_df = pd.concat([
-        region_filt_df[['Date', 'Type', train_configs['target_name']]], 
+        region_filt_df[['Date', 'Type', configs['target_name']]], 
         lags_df], axis=1)
 
     feat_df = pd.concat([feat_df, make_time_features(feat_df)], axis=1)
@@ -81,8 +74,8 @@ def make_stage_2_data(merge_df, region, train_configs):
     dates = feat_df['Date']
     feat_df = feat_df.drop(columns='Date')
     
-    X = feat_df[feat_df.columns.difference([train_configs['target_name']])]
+    X = feat_df[feat_df.columns.difference([configs['target_name']])]
     X = X.apply(pd.to_numeric, errors='coerce')
-    y = feat_df[train_configs['target_name']]
+    y = feat_df[configs['target_name']]
     
     return X, y, dates

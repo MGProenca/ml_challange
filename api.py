@@ -7,10 +7,14 @@ import datetime as dt
 import numpy as np
 import train_models
 from typing import Dict, List
+from dotenv import load_dotenv
+import os
 
-# 1️⃣ Initialize FastAPI app
+load_dotenv()
+
+# Initialize FastAPI app
 app = FastAPI()
-mlflow.set_tracking_uri("http://localhost:5000")  # Set this if using a tracking server
+mlflow.set_tracking_uri(os.getenv("MLFLOW_TRACKING_URI"))  # Tracking server
 
 configs = train_models.load_configs()
 print(configs)
@@ -88,10 +92,6 @@ def predict(region:str,
     
     if region not in models:
         raise HTTPException(status_code=404, detail=f"Model for region '{region}' not found.")
-
-    # # **4️⃣ Validate Input Using Region-Specific Schema**
-    # InputSchema = schemas[region]  # Get the Pydantic model for the region
-    # validated_data = InputSchema(**request)  # Validate input payload
 
     # Convert validated input to DataFrame 
     df = pd.DataFrame.from_dict(validated_data)
