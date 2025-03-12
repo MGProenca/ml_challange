@@ -5,7 +5,6 @@ from pydantic import create_model
 from mlflow.models import Model
 import datetime as dt
 import numpy as np
-import train_models
 from typing import Dict, List
 from dotenv import load_dotenv
 import os
@@ -16,15 +15,36 @@ load_dotenv()
 app = FastAPI()
 mlflow.set_tracking_uri(os.getenv("MLFLOW_TRACKING_URI"))  # Tracking server
 
-configs = train_models.load_configs()
-print(configs)
-regions = configs['target_regions']
+# configs = train_models.load_configs()
+# print(configs)
+# regions = configs['target_regions']
 
-# Define available regions and load models dynamically
+# Get a list of all registered models
+registered_models = mlflow.registered_model.list_registered_models()
+# Loop through all registered models
+print('loading models')
 REGION_MODELS = {}
-for region in configs['target_regions']:
-    print(region)
-    REGION_MODELS[region] = f"models:/{region}_AVOCADO_FORECAST/latest"
+for model in registered_models:
+    model_name = model.name
+    print(f"Model Name: {model_name}")
+    region = registered_models
+    
+    # Get the latest version of the model
+    latest_version = mlflow.registered_model.get_registered_model_version(model_name, model.latest_version)
+    model_tags = latest_version.tags
+
+    # Fetch the model URI for the latest version
+    model_uri = latest_version.source
+    print(f"Model URI: {model_uri}")
+    print("-" * 40)
+    REGION_MODELS[region] = model_tags['region']
+
+
+# # Define available regions and load models dynamically
+# REGION_MODELS = {}
+# for region in configs['target_regions']:
+#     print(region)
+#     REGION_MODELS[region] = f"models:/{region}_AVOCADO_FORECAST/latest"
 
 models = {}
 schemas = {}

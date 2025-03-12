@@ -12,8 +12,9 @@ from sklearn.model_selection import train_test_split
 import json
 import warnings
 from dotenv import load_dotenv
-import data_processing
+import modelling.data_processing as data_processing
 import feature_eng
+import configs
 
 load_dotenv()
 
@@ -72,9 +73,8 @@ def load_configs():
     #     # "aux_lags": [4],
     #     'experiment_name': 'Price Forecasting11 - Regions'
     # }
-    with open('configs.json', 'r') as f:
-        configs = json.load(f)
-    return configs
+    
+    return configs.configs
 
 def plot_results(y_train, y_true, y_pred, target_name, dates, fold=None):
     # Plot the fold results
@@ -92,13 +92,14 @@ def plot_results(y_train, y_true, y_pred, target_name, dates, fold=None):
     return plt
 
 def main(experiment_name = os.getenv("EXPERIMENT_NAME")):
-    # mlflow.set_tracking_uri("http://localhost:5000")  # Set this if using a tracking server
+    mlflow.set_tracking_uri(os.getenv("MLFLOW_TRACKING_URI"))  # Set this if using a tracking server
 
     configs = load_configs()
+    print('loaded configs')
     merge_df = data_processing.make_stage_1_data(configs)
-
+    print('Loaded data')
     mlflow.set_experiment(experiment_name)
-
+    print('Set experiment name')
     for region in configs['target_regions']:
         print(f'Trainning: {region}')
         X, y, dates = feature_eng.make_stage_2_data(merge_df, region, configs)
@@ -136,10 +137,12 @@ def main(experiment_name = os.getenv("EXPERIMENT_NAME")):
             
             # Register the model
             model_uri = mlflow.get_artifact_uri("final_model")
-            mlflow.register_model(model_uri, name=f'{region}_AVOCADO_FORECAST')
+            tags = {"region": region}
+            mlflow.register_model(model_uri, name=f'{region}_AVOCADO_FORECAST', tags=tags)
 
 if __name__ =='__main__':
     start = time.time()
+    print('START!')
     main()
     end = time.time()
     elapsed_time = start - end
