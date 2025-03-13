@@ -124,7 +124,9 @@ def main(experiment_name = os.getenv("EXPERIMENT_NAME")):
             final_model_cv.fit(X_train, y_train)
             y_test_pred = final_model_cv.predict(X_test)
             test_mse = mean_squared_error(y_test, y_test_pred)
+            test_mape = mean_absolute_percentage_error(y_test, y_test_pred)
             mlflow.log_metric("test_mse", test_mse)
+            mlflow.log_metric("test_mape", test_mape)
             
             plot = plot_results(y_train, y_test, y_test_pred, configs['target_name'], dates)
             plot_path = f"plot_test.png"
