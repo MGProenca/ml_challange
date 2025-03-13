@@ -108,7 +108,6 @@ def main(experiment_name = os.getenv("EXPERIMENT_NAME")):
     for region in configs['target_regions']:
         print(f'Trainning: {region}')
         X, y, dates = feature_eng.make_stage_2_data(merge_df, region, configs)
-
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, shuffle=False)
         
         # Start one run per region
