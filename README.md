@@ -9,14 +9,15 @@ There are out of the box time series forecasting models, i choose to implement a
 2) Since this is an exercise that will not be worked upon in the real world and which the objective is purely a  technical evaluation, i believe a custom solution allows me more room to express skills in machine learning engineering than models like prophet.
 3) In a more time constrained environment where showing skills is not the main goal and a couple percentage points of precision are not essential I would probably go for the easier route...
 
-## Table of Contents
+<!-- ## Table of Contents
 - [The data](#the-data)
-- [Explainer](#explainer)
+- [Install and run instructions](#install-and-run-instructions)
+- [How to run the explainer](#How to run the explainer)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Configuration](#configuration)
 - [Training models and running the API](#training-models)
-- [Project Structure](#project-structure)
+- [Project Structure](#project-structure) -->
 
 ## The data
 
@@ -35,14 +36,7 @@ The columns are as follows:
 - **4225**: Total number of avocados with PLU 4225 sold
 - **4770**: Total number of avocados with PLU 4770 sold
 
-
-## Explainer
-In the `explainer.ipynb` notebook i do a quick exploratory analysis and explain the inner workings of my functions/configs step by step while also going through my thought process behind the data processing, feature engineering, model creation, validation and optimizations. 
-
-At the end of the `explainer.ipynb` is also a section for testing the predictions of the API. Run this part after finishing training models and running the API with the instructions bellow.
-
-
-## Installation
+## Install and run instructions
 
 1. Clone the repository:
 
@@ -51,70 +45,38 @@ At the end of the `explainer.ipynb` is also a section for testing the prediction
    cd ml_challenge
    ```
 
-In this project i used astral-UV for dependency manegement. 
-The following are instructions for using it to recreate the VENV. 
-If you don't wish to use it you can just create a python 3.12 venv and install the requirements.
-
-2. Install Astral-UV for managing versions(if not already installed):
-    ```bash
-   curl -LsSf https://astral.sh/uv/install.sh | sh
-   ```
-
-   Or, if your system doesn't have curl, you can use wget:
-
+2. run
    ```bash
-   wget -qO- https://astral.sh/uv/install.sh | sh
+   docker compose up --build
    ```
 
-3. Create a virtual environment and activate it:
+This will run 3 separate containers, mlflow, train and API.
 
-   ```bash
-   uv venv
-   source .venv/bin/activate
-   ```
+The mlflow container will:
+- Just start the mlflow server
 
-4. Install the required dependencies:
-
-   ```bash
-   uv pip install -r requirements.txt
-   ```
-
-
-## Usage
-
-### Configuration
-
-The configuration for the trainning is defined in the `configs.py` file in the `modelling` directory. This includes the target regions, lags, auxiliary regions, and features. The `explainer.ipynb` notebook gives more details. The important part to know is that the `target_regions` field specifies which regions will be trained and deployed.
-
-### Training models and running the API
-
-First build and run the docker containers with 
-
-```bash
-docker compose up --build
-```
-
-This will start an mlflow server, run the trainning script and launch the API to serve predictions.
-
-The train.py script will:
-- Load the configuration and data.
+The train container will:
+- Load the train configurations and data.
 - Train an XGBoost model for each region.
-- Log the model and metrics to MLflow.
-- Register the model in the MLflow model registry.
+- Log the models and metrics to MLflow.
+- Register the models in the MLflow model registry.
+- Start a jupyter server so you can run the [`explainer.ipynb`](modelling/explainer.ipynb) notebook directly inside the container.
 
-The API will:
+The API container will:
 - Load the models from the registry
 - Build the pydantic validation schemas from the mlflow logged schemas
 - Offer 2 endpoints: 
 - - /reload-models: For refreshing new models logged to the registry
 - - /predict/{region}: For serving predictions for each of the region models in the registry
 
-### Validating metrics
-Everything is logged to the mlflow server, after the containers are up, in the browser access the [mlflow UI](http://localhost:5000) for visualizing the metrics
+## How to run the explainer
+In the [`modelling/explainer.ipynb`](modelling/explainer.ipynb) notebook, I do a quick exploratory analysis and explain the inner workings of my functions/configs step by step while also going through my thought process behind the data processing, feature engineering, model creation, validation and optimizations. To run it, wait for the `train_model` container to launch the jupyter server, after this you can click [`here`](http://localhost:8888/notebooks/explainer.ipynb) or type `http://localhost:8888/notebooks/explainer.ipynb` in your browser to open the explainer notebook running inside the container.
 
-### Testing the API
+## How to check the metrics
+Everything is logged to the mlflow server. After the train finishes (when the jupyter server is up), you can access the mlflow UI by clicking [`here`](http://localhost:5000) or type `http://localhost:5000` in your browser to check the metrics.
 
-At the end of the explainer.ipynb there is a section for testing the API, run it after the containers finished.
+## How to test the API
+At the end of [`explainer.ipynb`](modelling/explainer.ipynb) is also a section for testing the the API endpoints.
 
 ## Project Structure
 
