@@ -1,19 +1,15 @@
 # Avocado Price Forecasting
 
-This project aims to forecast avocado prices for different regions using machine learning models. The project utilizes XGBoost for regression and leverages MLflow for experiment tracking and model management. The project also includes a FastAPI application for serving the models and making predictions.
+This project aims to forecast avocado prices for different US regions using machine learning models. The project utilizes XGBoost for regression and leverages MLflow for experiment tracking and model management. It also includes a FastAPI application for serving the models and making predictions.
 
 ## Table of Contents
 
 - [Installation](#installation)
 - [Explainer](#explainer)
 - [Usage](#usage)
-- [Project Structure](#project-structure)
 - [Configuration](#configuration)
-- [Training Models](#training-models)
-- [Serving Models](#serving-models)
-- [API Endpoints](#api-endpoints)
-- [Contributing](#contributing)
-- [License](#license)
+- [Training models and running the API](#training-models)
+- [Project Structure](#project-structure)
 
 ## Installation
 
@@ -38,86 +34,55 @@ This project aims to forecast avocado prices for different regions using machine
    ```
 
 ## Explainer
-In the `explainer.ipynb` notebook i go step by step explaining the inner workings of my functions/configs while also going through my thought process behind the data processing, feature engineering, model creation, validation and optimizations.
+In the `explainer.ipynb` notebook i explain the inner workings of my functions/configs step by step while also going through my thought process behind the data processing, feature engineering, model creation, validation and optimizations.
 
 
 ## Usage
 
 ### Configuration
 
-The configuration for the project is defined in the `load_configs` function in the `train_models.py` file. This includes the target regions, lags, auxiliary regions, and features.
+The configuration for the trainning is defined in the `configs.py` file in the `modelling` directory. This includes the target regions, lags, auxiliary regions, and features. The `explainer.ipynb` notebook gives more details. The important part to know is that the `target_regions` field specifies which regions will be trained and deployed.
 
-### Training Models
+### Training models and running the API
 
-To train the models for each region, run the `train_models.py` script:
+First build and run the docker containers with 
 
 ```bash
-python train_models.py
+docker compose up --build
 ```
 
-This script will:
+This will start an mlflow server, run the trainning script and launch the API to serve predictions.
 
+The train.py script will:
 - Load the configuration and data.
 - Train an XGBoost model for each region.
 - Log the model and metrics to MLflow.
 - Register the model in the MLflow model registry.
 
-On my machine it took about 5 minutes to run
-
-### Serving Models
-
-To serve the models using FastAPI, run the `api.py` script:
-
-```bash
-python api.py
-```
-
-This will start the FastAPI application, which provides endpoints for making predictions.
-
-## API Endpoints
-
-The FastAPI application provides the following endpoints:
-
-### **POST /predict/{region}**
-
-Predict avocado prices for the given region using its specific model and schema.
-
-**Example request:**
-
-```json
-{
-    "TotalVolume_conventional": {"0": 12345.67, "1": 23456.78},
-    "4046_conventional": {"0": 123.45, "1": 234.56},
-    "4225_conventional": {"0": 234.56, "1": 345.67},
-    "4770_conventional": {"0": 345.67, "1": 456.78},
-    "TotalBags_conventional": {"0": 456.78, "1": 567.89},
-    "SmallBags_conventional": {"0": 567.89, "1": 678.90},
-    "LargeBags_conventional": {"0": 678.90, "1": 789.01},
-    "XLargeBags_conventional": {"0": 789.01, "1": 890.12},
-    "type": {"0": "conventional", "1": "conventional"},
-    "year": {"0": 2021, "1": 2021},
-    "region": {"0": "Albany", "1": "Albany"}
-}
-```
-
-**Example response:**
-
-```json
-{
-    "region": "Albany",
-    "prediction": [1.23, 2.34]
-}
-```
+The API will:
+- Load the models from the registry
+- Build the pydantic validation schemas from the mlflow logged schemas
+- Offer 2 endpoints: 
+- - /reload-models: For refreshing new models logged to the registry
+- - /predict/{region}: For serving predictions for each of the region models in the registry
 
 ## Project Structure
 
 ```
 .
-├── api.py                  # FastAPI application for serving models
-├── data_processing.py      # Data processing functions
-├── feature_eng.py          # Feature engineering functions
-├── train_models.py         # Script for training models
+├── data
+│   └── ...                 # Data files
+├── modelling
+│   ├── configs.py          # Configuration file for training
+│   ├── data_processing.py  # Data processing functions
+│   ├── feature_eng.py      # Feature engineering functions
+│   ├── region_best_params.json # Best parameters for each region
+│   ├── train_models.py     # Script for training models
+│   └── ...                 # Other modelling files
+├── src
+│   ├── api.py              # FastAPI application for serving models
 ├── requirements.txt        # Project dependencies
+├── docker-compose.yml      # Docker Compose configuration file
 └── README.md               # Project README file
 ```
 

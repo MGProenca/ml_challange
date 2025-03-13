@@ -1,7 +1,0 @@
-Move modelling code to separate folder
-build the container for trainning
-add a region tag for the model registry
-delete model_trainning.ipynb
-
-In the API code, instead of loading the train configs, load the region of the models from registry
-See if the API code depends on other modules, if not keep it in the main dir

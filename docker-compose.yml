@@ -8,38 +8,33 @@ services:
       - .env  # Reference the .env file
     command: mlflow server --host 0.0.0.0 --port 5000 --backend-store-uri sqlite:///mlflow.db
 
-  # train:
-  #   image: python:3.12.3
-  #   container_name: train_model
-  #   depends_on:
-  #     - mlflow
-  #   env_file:
-  #     - .env  # Reference the .env file
-  #   working_dir: /app
-  #   volumes:
-  #     # - ./train_models.py:/app/train_models.py
-  #     # - ./data_processing.py:/app/data_processing.py
-  #     # - ./feature_eng.py:/app/feature_eng.py
-  #     # - ./configs.json:/app/configs.json
-  #     # - ./region_best_params.json:/app/region_best_params.json
-  #     - ./requirements.txt:/app/requirements.txt
-  #     - ./data:/app/data
-  #     - ./modelling:/app
-  #   command: |
-  #     bash -c "pip install --no-cache-dir -r /app/requirements.txt && python /app/train_models.py"
+  train:
+    image: python:3.12.3
+    container_name: train_model
+    depends_on:
+      - mlflow
+    env_file:
+      - .env  # Reference the .env file
+    working_dir: /app
+    volumes:
+      - ./requirements.txt:/app/requirements.txt
+      - ./data:/app/data
+      - ./modelling:/app
+    command: |
+      bash -c "pip install --no-cache-dir -r /app/requirements.txt && python /app/train_models.py"
 
-  # api:
-  #   image: python:3.12.3
-  #   container_name: api_service
-  #   depends_on:
-  #     - mlflow
-  #   env_file:
-  #     - .env  # Reference the .env file
-  #   working_dir: /app
-  #   volumes:
-  #     - ./src:/app/src
-  #     - ./requirements.txt:/app/requirements.txt
-  #   ports:
-  #     - "8000:8000"
-  #   command: |
-  #     bash -c "pip install --no-cache-dir -r /app/requirements.txt && uvicorn src.api:app --host 0.0.0.0 --port 8000"
+  api:
+    image: python:3.12.3
+    container_name: api_service
+    depends_on:
+      - mlflow
+    env_file:
+      - .env  # Reference the .env file
+    working_dir: /app
+    volumes:
+      - ./src:/app/src
+      - ./requirements.txt:/app/requirements.txt
+    ports:
+      - "8000:8000"
+    command: |
+      bash -c "pip install --no-cache-dir -r /app/requirements.txt && uvicorn src.api:app --host 0.0.0.0 --port 8000"
