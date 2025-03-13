@@ -4,14 +4,20 @@ This project aims to forecast avocado prices for different US regions using mach
 
 ## Table of Contents
 
-- [Installation](#installation)
 - [Explainer](#explainer)
+- [Installation](#installation)
 - [Usage](#usage)
 - [Configuration](#configuration)
 - [Training models and running the API](#training-models)
 - [Project Structure](#project-structure)
 
-## Installation
+## Explainer
+In the `explainer.ipynb` notebook i explain the inner workings of my functions/configs step by step while also going through my thought process behind the data processing, feature engineering, model creation, validation and optimizations. 
+
+At the end of the `explainer.ipynb` is also a section for testing the predictions of the API. Run this part after Training models and running the API.
+
+
+## Instalation
 
 1. Clone the repository:
 
@@ -32,9 +38,6 @@ This project aims to forecast avocado prices for different US regions using mach
    ```bash
    pip install -r requirements.txt
    ```
-
-## Explainer
-In the `explainer.ipynb` notebook i explain the inner workings of my functions/configs step by step while also going through my thought process behind the data processing, feature engineering, model creation, validation and optimizations.
 
 
 ## Usage
