@@ -38,7 +38,6 @@ def make_target_region_lags_df(merge_df, target_region, configs):
         for aux_region_name in configs['aux_regions']:
             if aux_region_name == target_region:
                 continue
-            
             aux_region_filt_df = select_region(merge_df, aux_region_name).reset_index()
             aux_regions_lags.append(
                 make_region_lags(
@@ -47,8 +46,9 @@ def make_target_region_lags_df(merge_df, target_region, configs):
                     configs['aux_features'], 
                     configs['aux_lags'],
                     region_name_in_col=True))
-        aux_regions_lags_df = pd.concat(aux_regions_lags, axis=1)
-        target_region_lags_df = pd.concat([target_region_lags_df, aux_regions_lags_df], axis=1)
+        if aux_regions_lags != []:
+            aux_regions_lags_df = pd.concat(aux_regions_lags, axis=1)
+            target_region_lags_df = pd.concat([target_region_lags_df, aux_regions_lags_df], axis=1)
 
     return target_region_lags_df
 
