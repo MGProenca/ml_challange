@@ -61,7 +61,8 @@ def pivot_and_merge_numerical_columns(df, grouped_df, target_name):
     return merge_df
 
 def make_stage_1_data(configs):
-    df = load_raw_data()
+    # df = load_raw_data()
+    df = pd.read_csv('data/avocado.csv')
     df = preprocess_raw_data(df)
     grouped_df = group_by_region(df)
     merge_df = pivot_and_merge_numerical_columns(df, grouped_df, configs['target_name'])

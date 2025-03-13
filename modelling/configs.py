@@ -2,8 +2,9 @@ configs = {
     "target_name": "AveragePrice",
     "lags": [4, 8, 13, 26, 52],
     "target_regions": [
-        "Albany", 
-        # "Atlanta", "BaltimoreWashington", "Boise", "Boston",
+        # "Albany", 
+        "Atlanta", 
+        # "BaltimoreWashington", "Boise", "Boston",
         # "BuffaloRochester", "California", "Charlotte", "Chicago",
         # "CincinnatiDayton", "Columbus", "DallasFtWorth", "Denver",
         # "Detroit", "GrandRapids", "GreatLakes", "HarrisburgScranton",
@@ -16,7 +17,7 @@ configs = {
         # "SanDiego", "SanFrancisco", "Seattle", "SouthCarolina",
         # "SouthCentral", "Southeast", "Spokane", "StLouis", "Syracuse",
         # "Tampa", "TotalUS", "West", 
-        "WestTexNewMexico"
+        # "WestTexNewMexico"
     ],
     "aux_regions": [
         "TotalUS", "West", "Midsouth", "Northeast", "Southeast", "SouthCentral"

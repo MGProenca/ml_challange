@@ -153,6 +153,17 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
+@app.post("/reload-models")
+def reload_models():
+    """
+    Reload all registered models from MLflow and update the global dictionary.
+
+    Returns:
+        dict: A message indicating the models have been reloaded.
+    """
+    load_all_models()
+    return {"message": "Models reloaded successfully"}
+
 # Prediction Endpoint
 @app.post("/predict/{region}")
 def predict(region:str, 

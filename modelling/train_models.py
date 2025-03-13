@@ -29,7 +29,12 @@ def convert_numbers(obj):
 
 def load_best_params(region, from_json=True):
     if from_json:
-        with open('modelling/region_best_params.json') as file:
+        # Get the directory of the current script (train.py)
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        # Construct the relative path to params.json
+        params_path = os.path.join(script_dir, 'region_best_params.json')
+
+        with open(params_path) as file:
             best_params = json.load(file, object_hook=convert_numbers)
         if region in best_params:
             return best_params[region]
