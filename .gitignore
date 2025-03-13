@@ -1,4 +1,5 @@
 .venv
+venv
 /mlruns
 /mlartifacts
 **/__pycache__/
