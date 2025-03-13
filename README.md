@@ -22,21 +22,36 @@ At the end of the `explainer.ipynb` is also a section for testing the prediction
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/avocado-price-forecasting.git
-   cd avocado-price-forecasting
+   git clone https://github.com/MGProenca/ml_challenge.git
+   cd ml_challenge
    ```
 
-2. Create a virtual environment and activate it:
+In this project i used astral-UV for dependency manegement. 
+The following are instructions for using it to recreate the VENV. 
+If you don't wish to use it you can just create a python 3.12 venv and install the requirements.
 
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate
+2. Install Astral-UV for managing versions(if not already installed):
+    ```bash
+   curl -LsSf https://astral.sh/uv/install.sh | sh
    ```
 
-3. Install the required dependencies:
+   Or, if your system doesn't have curl, you can use wget:
 
    ```bash
-   pip install -r requirements.txt
+   wget -qO- https://astral.sh/uv/install.sh | sh
+   ```
+
+3. Create a virtual environment and activate it:
+
+   ```bash
+   uv venv
+   source .venv/bin/activate
+   ```
+
+4. Install the required dependencies:
+
+   ```bash
+   uv pip install -r requirements.txt
    ```
 
 
